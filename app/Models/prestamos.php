@@ -28,7 +28,7 @@ class prestamos extends Model
 
     /* Buscar todos los prestamos */
     public static function allLend(){
-        return prestamos::all();
+        return prestamos::paginate(10);
     }
     /* --------------- */
 

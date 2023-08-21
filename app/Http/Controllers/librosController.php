@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\libros;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -13,11 +14,21 @@ use Illuminate\Support\Facades\Session;
 class librosController extends Controller
 {
     /* Agregamos un nuevo libro desde el formulario agregar */
+    public function prueba(){
+        /* dd(Auth::user()->rol); */
+        if (Auth::user()->rol == "admin"){
+            return "Soy admin";
+        }else{
+            return "no soy admin";
+        }
+
+    }
+    /* ---------------------- */
+
+    /* Agregamos un nuevo libro desde el formulario agregar */
     public function addBooks(Request $request){
         $id_libro= libros::createBook($request);
-        return view ('libros\addLibroOk', ['id' => $id_libro]);
-        
-        
+        return view ('libros\addLibroOk', ['id' => $id_libro]); 
 
     }
     /* ---------------------- */

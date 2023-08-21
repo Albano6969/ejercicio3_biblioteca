@@ -53,7 +53,7 @@
                     <label for="" class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">Diponible:</label>
                 </div>
                 <div class="md:w-2/3">    
-                    <select name="disponible" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select name="disponible" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option value="NO">No esta disponible</option>
                         <option value="SI" selected>Si esta disponible</option>
                     </select>

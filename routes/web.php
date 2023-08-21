@@ -14,10 +14,23 @@ use App\Http\Controllers\prestamosController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+/* pruebas */
+Route::get('/prueba', [librosController::class, 'prueba'])->name('prueba') ;
+/* ------------------- */
+
 /* Añade Libro desde el Formulario */
 Route::post('/addBook', [librosController::class, 'addBooks'])->name('addBook') ;
 /* -------------------------------- */
@@ -36,7 +49,7 @@ Route::get('/showFormBook', [librosController::class, 'showFormBook'] );
 /* ---------------------------------------- */
 
 /* Muestra la lista de libros */
-Route::get('/mostrarLibros', [librosController::class, 'showAllBook']);
+Route::get('/mostrarLibros', [librosController::class, 'showAllBook'])->name('mostrarlibros');
 /* -------------------------- */
 
 /* Muestra formulario relleno con el libro que hemos seleccionado para modificar los datos */
@@ -56,7 +69,7 @@ Route::get('/viewDetails/{id}', [librosController::class, 'viewDetails']);
 /* ----------------------------------- */
 
 /* Ruta a prestamos */
-Route::get('/mostrarPrestamo', [prestamosController::class, 'showAllLend']);
+Route::get('/mostrarPrestamo', [prestamosController::class, 'showAllLend'])->name('mostrarPrestamo');
 /* ---------------------- */
 
 /* Vista para añadir nuevo prestamo con el libro que hemos seleccionado */
@@ -94,3 +107,7 @@ Route::get('/searchLendDate', [prestamosController::class, 'searchLendDate'])->n
 /* Pruebas */
 Route::get('/showPruebas', [prestamosController::class, 'showPruebas'])->name('showPruebas');
 /* ------------------------------- */
+
+
+    
+});

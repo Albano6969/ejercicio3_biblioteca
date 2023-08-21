@@ -60,7 +60,7 @@ class libros extends Model
 
     /* Buscar todos los libros */
     public static function allBooks(){
-        return libros::all();
+        return libros::paginate(10);
     }
     /* --------------- */
 

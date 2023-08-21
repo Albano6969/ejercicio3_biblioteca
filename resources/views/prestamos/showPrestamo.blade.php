@@ -9,7 +9,7 @@
     
         {{-- Cuadro de busqueda --}}
     <div class="relative shadow-md mb-3 ">
-        <div class=" text-sm text-left text-gray-500 dark:text-gray-400 bg-white  p-3 ">
+        <div class=" text-sm text-left text-gray-500 bg-white  p-3 ">
             <div>
                 <h3>Busqueda de prestamos</h3>
                 
@@ -20,11 +20,11 @@
                         <div class="flex mb-4 ">
                             <div class="w-2/3  h-12 flex flex-grow mb-3">
                                 <label id="titulo" class="text-xl ">Busqueda por titulo</label>
-                                <input type="text" name="search" class="w-10/12 p-4 mr-5 flex-grow text-sm text-gray-900 border m-2 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">   
+                                <input type="text" name="search" class="w-10/12 p-4 mr-5 flex-grow text-sm text-gray-900 border m-2 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">   
                             </div>
                             
                             <div class="w-2/3  h-12 flex flex-row">
-                            <button type="submit" class="text-white absolute w-28  bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border-0">Buscar</button>
+                            <button type="submit" class="text-white absolute w-28  bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 border-0">Buscar</button>
                             </div>
                         </div>
                     </form>
@@ -42,7 +42,7 @@
                                 
                             </div>
                             <div class="w-1/3  h-12 flex flex-row">
-                                <button type="submit" class="text-white absolute w-28  bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border-0">Buscar</button>
+                                <button type="submit" class="text-white absolute w-28  bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 border-0">Buscar</button>
                             </div>
                         </div>
                     </form>
@@ -73,7 +73,7 @@
                      @endisset    
                     {{-- --------------- --}}
                 </div>
-                <a href="http://127.0.0.1:8000/mostrarPrestamo" type="button" class="text-white no-underline bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border-0">Borrar Busqueda</a>
+                <a href="http://127.0.0.1:8000/mostrarPrestamo" type="button" class="text-white no-underline bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 border-0">Borrar Busqueda</a>
             </div>
         </div>
     </div>
@@ -81,8 +81,8 @@
 
 {{-- Tabla con los resultados --}}
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="table mb-3">
+            <thead >
                 <th scope="col" class="px-6 py-3 text-lg">Libro</th>
                 <th scope="col" class="px-6 py-3 text-lg">Usuario</th>
                 <th scope="col" class="px-6 py-3 text-lg">Fecha de salida</th>
@@ -100,7 +100,12 @@
             
             
         </table>
+        
+        <tfoot class="gb-white">
+            {{$lend->links()}}
+        </tfoot>
         </div>
+        
     {{-- --------------------------------- --}}
          
     
