@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\prestamos;
 use App\Models\libros;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\prestamos;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class prestamos extends Model
 {
@@ -25,10 +27,26 @@ class prestamos extends Model
        
     }
     /* -------------------------- */
+     /* Relacion con la tabla user */
+     public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+        
+       
+    }
+    /* -------------------------- */
 
     /* Buscar todos los prestamos */
     public static function allLend(){
-        return prestamos::paginate(10);
+
+        if(User::isAdmin() == true){
+
+            return prestamos::paginate(10);
+        }else{
+            $user= Auth::id();
+            return prestamos::where('user_id', '=', $user)
+            ->paginate(10);
+        }
+        /* return prestamos::all(); */
     }
     /* --------------- */
 
@@ -48,13 +66,15 @@ class prestamos extends Model
 
     /* agregar prestamo y actualizar disponibilidad */
     public static function addUpdateLend($id, Request $request){
-        
+        $user=Auth::user()->id;
+
         $books = libros::findBooksId($id);
         $books ->disponible='NO';
         $books->save();
         $lend= new prestamos();
         $lend->fecha_prestamo=$request->input('fecha');
         $lend->libro_id=$id;
+        $lend->user_id=$user;
         $lend->save(); 
 
     }

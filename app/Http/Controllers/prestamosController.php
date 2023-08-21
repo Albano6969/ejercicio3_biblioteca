@@ -8,18 +8,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\prestamos;
 use App\Models\libros;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class prestamosController extends Controller
 {
     /* Mostramos todos los prestamos en una tabla */
     public function showAllLend(){
+    
         $lend = prestamos::allLend();
-        /* dd($lend); */
+        /* dd(prestamos::allLend()); */
         return view('prestamos.showPrestamo', compact('lend'));
     }
     /* --------------------------- */
+    
 
 /* Ver formulario de prestamo con el libro seleccionado */
     public function newLend($id){

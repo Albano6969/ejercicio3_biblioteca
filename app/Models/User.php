@@ -9,9 +9,17 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\prestamos;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
+     /* Relacion con la tabla prestamos */
+   public function prestamosUser(): HasMany{
+    return $this->hasMany(prestamos::class, 'user_id', 'id');
+    
+}
+/* -------------------------- */
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -59,4 +67,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public static function isAdmin(){
+        if(Auth::user()->rol == "admin"){
+            return true;
+        }
+    }
 }

@@ -3,7 +3,11 @@
     <tr class="bg-white border-b card">
 
         <td class="px-6 py-4 text-base">{{$item->libro->titulo}}</td>
-        <td class="px-6 py-4 text-base">{{-- {{$item->libro->descripcion}} --}}</td>
+
+        @if(Auth::user()->rol == "admin")
+            <td class="px-6 py-4 text-base">{{$item->user->name}}</td>
+        @endif
+        
         <td class="px-6 py-4 text-base">{{$item->fecha_prestamo}}</td>
         <td class="px-6 py-4 text-base">{{$item->fecha_devolucion}}</td>
         <td class="px-6 py-4 text-base">

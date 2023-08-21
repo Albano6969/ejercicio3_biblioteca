@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\libros;
 use App\Models\prestamos;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
@@ -60,7 +62,17 @@ class libros extends Model
 
     /* Buscar todos los libros */
     public static function allBooks(){
-        return libros::paginate(10);
+       
+        if(User::isAdmin() == true){
+
+            return libros::paginate(10);
+        }else{
+            
+            
+                return libros::where('disponible', '=', "SI")
+                ->paginate(10);
+            }
+        
     }
     /* --------------- */
 
@@ -69,6 +81,8 @@ class libros extends Model
         return libros::find($id);
     }
     /* ---------------------- */
+
+    
     
 
     /* Buscar todos los libros que coincidan con lo que ponemos en el campo de busqueda con paginación */

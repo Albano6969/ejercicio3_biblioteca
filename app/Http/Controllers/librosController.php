@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\libros;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class librosController extends Controller
     /* Agregamos un nuevo libro desde el formulario agregar */
     public function prueba(){
         /* dd(Auth::user()->rol); */
-        if (Auth::user()->rol == "admin"){
+        if (user::isAdmin() == true){
             return "Soy admin";
         }else{
             return "no soy admin";
@@ -24,6 +25,8 @@ class librosController extends Controller
 
     }
     /* ---------------------- */
+
+
 
     /* Agregamos un nuevo libro desde el formulario agregar */
     public function addBooks(Request $request){
@@ -49,8 +52,12 @@ class librosController extends Controller
 
     /* Mostramos todos los libros en una tabla */
     public function showAllBook(){
-        $books = libros::allBooks();
-        return view('libros.showlibro')->with('books', $books);
+        
+       
+            $books = libros::allBooks();
+            return view('libros.showlibro')->with('books', $books);
+      
+        
     }
     /* --------------------------- */
 

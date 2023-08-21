@@ -84,7 +84,11 @@
         <table class="table mb-3">
             <thead >
                 <th scope="col" class="px-6 py-3 text-lg">Libro</th>
-                <th scope="col" class="px-6 py-3 text-lg">Usuario</th>
+                @if(Auth::user()->rol == "admin")
+                    
+                    <th scope="col" class="px-6 py-3 text-lg">Usuario</th>
+                @endif
+
                 <th scope="col" class="px-6 py-3 text-lg">Fecha de salida</th>
                 <th scope="col" class="px-6 py-3 text-lg">Fecha de entrega</th>
                 <th scope="col" class="px-6 py-3 text-lg">opciones</th>

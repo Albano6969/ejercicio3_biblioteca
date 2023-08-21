@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('libro_id')->references('id')->on('libros');
             $table->date('fecha_prestamo');
             $table->date('fecha_devolucion')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             // Otros campos del préstamo
             $table->timestamps();
         });
