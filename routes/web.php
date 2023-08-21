@@ -45,7 +45,7 @@ Route::get('/deleteBook/{id}', [librosController::class, 'destroyBooks']);
 /* -------------------------------- */
 
 /* Formulario para agregar un nuevo libro */
-Route::get('/showFormBook', [librosController::class, 'showFormBook'] );  
+Route::get('/showFormBook', [librosController::class, 'showFormBook'] )->name("showFormBook");  
 /* ---------------------------------------- */
 
 /* Muestra la lista de libros */

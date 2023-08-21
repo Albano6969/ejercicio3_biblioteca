@@ -15,6 +15,12 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                        @if(Auth::user()->rol == "admin")
+                            
+                            <x-nav-link href="{{ route('showFormBook') }}" :active="request()->routeIs('showFormBook')">
+                                {{ __('Añadir Libro') }}
+                            </x-nav-link>
+                        @endif
                     <x-nav-link href="{{ route('mostrarlibros') }}" :active="request()->routeIs('mostrarlibros')">
                         {{ __('Mostrar Libros') }}
                     </x-nav-link>
